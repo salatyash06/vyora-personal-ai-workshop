@@ -1,0 +1,165 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+/*
+ * VYORA design system — refined futuristic command centre.
+ * Dark-only palette: deep charcoal/navy surfaces, muted teal/cyan accents,
+ * restrained violet. All colors in oklch. System font stack (offline safe).
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-sans: ui-sans-serif, system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", "Segoe UI Mono", Consolas, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-violet: var(--violet);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+}
+
+:root {
+  --radius: 0.75rem;
+  --background: oklch(0.19 0.022 255);
+  --foreground: oklch(0.94 0.008 240);
+  --surface: oklch(0.225 0.024 256);
+  --surface-raised: oklch(0.26 0.026 256);
+  --card: oklch(0.235 0.024 256);
+  --card-foreground: oklch(0.94 0.008 240);
+  --popover: oklch(0.245 0.024 256);
+  --popover-foreground: oklch(0.94 0.008 240);
+  --primary: oklch(0.74 0.104 196);
+  --primary-foreground: oklch(0.2 0.03 235);
+  --secondary: oklch(0.29 0.026 256);
+  --secondary-foreground: oklch(0.92 0.01 240);
+  --muted: oklch(0.28 0.022 256);
+  --muted-foreground: oklch(0.69 0.021 250);
+  --accent: oklch(0.78 0.096 188);
+  --accent-foreground: oklch(0.2 0.03 235);
+  --violet: oklch(0.68 0.108 296);
+  --destructive: oklch(0.63 0.17 25);
+  --destructive-foreground: oklch(0.97 0.01 240);
+  --warning: oklch(0.79 0.13 80);
+  --success: oklch(0.74 0.12 160);
+  --border: oklch(1 0 0 / 9%);
+  --border-strong: oklch(1 0 0 / 16%);
+  --input: oklch(0.26 0.024 256);
+  --ring: oklch(0.74 0.104 196);
+  --sidebar: oklch(0.205 0.023 256);
+  --sidebar-foreground: oklch(0.9 0.01 240);
+  --sidebar-border: oklch(1 0 0 / 8%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility panel {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 18px oklch(0.74 0.104 196 / 35%);
+}
+
+@keyframes vyora-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.95;
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 1;
+  }
+}
+
+@keyframes vyora-spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vyora-ripple {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.vyora-breathe {
+  animation: vyora-breathe 4.5s ease-in-out infinite;
+}
+.vyora-spin-slow {
+  animation: vyora-spin-slow 18s linear infinite;
+}
+.vyora-ripple {
+  animation: vyora-ripple 2.2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
